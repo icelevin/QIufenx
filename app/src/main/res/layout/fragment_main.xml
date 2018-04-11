@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:myattr="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/buttom_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2px"
+            android:background="@color/line" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal">
+
+            <com.hb.utils.view.Buttom_button
+                android:id="@+id/button_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                myattr:check_image="@mipmap/danao"
+                myattr:image="@mipmap/danao_gray"
+                myattr:text="@string/Fx" />
+
+            <com.hb.utils.view.Buttom_button
+                android:id="@+id/button_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                myattr:check_image="@mipmap/shuju"
+                myattr:image="@mipmap/shuju_gray"
+                myattr:text="@string/Check" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+
+                <com.hb.utils.view.Buttom_button
+                    android:id="@+id/button_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    myattr:check_image="@mipmap/user"
+                    myattr:image="@mipmap/user_gray"
+                    myattr:text="@string/My" />
+
+                <TextView
+                    android:id="@+id/badgeVie"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="30dip"
+                    android:layout_marginTop="5dip"
+                    android:background="@drawable/em_unread_count_bg"
+                    android:gravity="center"
+                    android:paddingLeft="4dip"
+                    android:paddingRight="4dip"
+                    android:text="0"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fragment_patent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/buttom_button">
+
+        <fragment
+            android:id="@+id/fragment_1"
+            class="cn.qiufenxi.www.qfx.ui.AnalyzeDataFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </FrameLayout>
+</RelativeLayout>

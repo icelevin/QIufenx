@@ -1,0 +1,101 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId "cn.qiufenxi.www.qfx"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+        multiDexEnabled true
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            //Zipalign优化
+            zipAlignEnabled true
+            // 移除无用的resource文件
+            shrinkResources true
+            multiDexEnabled true
+            //shrinkResources 为true minifEnabled必须为true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions  "tier"
+    productFlavors {
+        online {
+            //需要定制的渠道(比如说offline)中添加如下配置来更改占位符信息
+            manifestPlaceholders = [app_icon     : "@mipmap/ic_launcher",
+                                    app_label    : "@string/app_name",
+                                    umeng_channel: "release"]
+
+            buildConfigField "boolean", "log_debug", 'true'
+            buildConfigField "String", "Host", '"http://apiv5.hbjk114.com/"'
+            buildConfigField "String", "channelid", '"01000896-a724-a11a-42c9-0b1ecb17c606"'
+            buildConfigField "String", "secret", '"0100023b-a724-b26c-4657-a8d8924c9d6a"'
+
+
+            buildConfigField "String", "passportHost", '"http://passport.hbjk114.com/"'
+            buildConfigField "String", "passportChannelid", '"7f758bc4-11cb-4308-9580-4d9046365ba7"'
+            buildConfigField "String", "passportSecret", '"17ce066d-a86f-4399-83ff-a6e573e2a71c"'
+
+            buildConfigField "String", "webUrl", '"http://android.hbjk114.com/"'
+            buildConfigField "String", "staticwebUrl", '"http://www.hbjk114.com/"'
+            dimension "tier"
+        }
+
+        offline {
+            //需要定制的渠道(比如说offline)中添加如下配置来更改占位符信息
+            manifestPlaceholders = [app_icon     : "@mipmap/debug_ic_launcher",
+                                    app_label    : "@string/app_debug_name_125",
+                                    umeng_channel: "dev"]
+
+            buildConfigField "boolean", "log_debug", 'false'
+
+            buildConfigField "String", "Host", '"http://api2.hbjk114.com/"'
+            buildConfigField "String", "channelid", '"01000896-a724-a11a-42c9-0b1ecb17c606"'
+            buildConfigField "String", "secret", '"0100023b-a724-b26c-4657-a8d8924c9d6a"'
+
+            buildConfigField "String", "passportHost", '"http://passport2.hbjk114.com/"'
+            buildConfigField "String", "passportChannelid", '"7f758bc4-11cb-4308-9580-4d9046365ba7"'
+            buildConfigField "String", "passportSecret", '"17ce066d-a86f-4399-83ff-a6e573e2a71c"'
+
+            buildConfigField "String", "webUrl", '"http://android.hbjk114.cn:8000/"'
+            buildConfigField "String", "staticwebUrl", '"http://cms.hbjk114.cn:8000/"'
+        }
+    }
+    productFlavors.all { flavor ->
+        // flavor.manifestPlaceholders = [UMENG_CHANNEL_VALUE: name]
+    }
+
+    //修改生成的apk名字
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def appName = 'qfx'
+            def buildName
+            variant.productFlavors.each { product ->
+                buildName = product.name
+            }
+            outputFileName = appName + "_" + buildName + "_${defaultConfig.versionName}_" + getDate() + ".apk"
+        }
+    }
+
+}
+//获取时间戳
+def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMddHHmm')
+    return formattedDate
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:${rootProject.ext.SUPPORT_VERSION}"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation project(':utils')
+    implementation 'com.android.support.test:runner:1.0.2-alpha1'
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../JKT4.11.iml" filepath="$PROJECT_DIR$/../JKT4.11.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../app/app.iml" filepath="$PROJECT_DIR$/../app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../baidumap/baidumap.iml" filepath="$PROJECT_DIR$/../baidumap/baidumap.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../diaease/diaease.iml" filepath="$PROJECT_DIR$/../diaease/diaease.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../sharelib/sharelib.iml" filepath="$PROJECT_DIR$/../sharelib/sharelib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../swiperecyclerview/swiperecyclerview.iml" filepath="$PROJECT_DIR$/../swiperecyclerview/swiperecyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../testapp/testapp.iml" filepath="$PROJECT_DIR$/../testapp/testapp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../umenganalytics/umenganalytics.iml" filepath="$PROJECT_DIR$/../umenganalytics/umenganalytics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../unionpay/unionpay.iml" filepath="$PROJECT_DIR$/../unionpay/unionpay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/utils.iml" filepath="$PROJECT_DIR$/utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../x5web/x5web.iml" filepath="$PROJECT_DIR$/../x5web/x5web.iml" />
+    </modules>
+  </component>
+</project>
